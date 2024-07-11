@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 export default function Home() {
   return (
     <div className="mx-auto w-full max-w-7xl">
-      <aside className="relative overflow-hidden text-black rounded-lg sm:mx-16 mx-2 sm:py-16 flex flex-col sm:flex-row">
-        <div className="sm:order-1 sm:w-1/2 flex justify-center sm:justify-start">
+      <aside className="overflow-hidden text-black rounded-lg sm:mx-16 mx-2 sm:py-16 grid gap-4 sm:grid-cols-2 grid-cols-1">
+        <div className="sm:order-1 flex justify-center sm:justify-start">
           <img
-            className="w-96 sm:w-100 md:w-1/2 lg:w-3/4"
+            className="w-96"
             src="https://i.ibb.co/5BCcDYB/Remote2.png"
             alt="image1"
           />

@@ -50,7 +50,11 @@ function Header({ type }) {
     navigate("/hotels", { state: { destination, date, options } });
   };
   return (
-    <div className="header bg-blue-800 px-12 md:px-20 lg:px-52 mt ${type ===  `list`? `pb-10` : `pb-40`} pb-20 relative">
+    <div
+      className={`header bg-blue-800 px-12 md:px-20 lg:px-52 mt ${
+        type === "list" ? "pb-0" : "pb-20"
+      } relative`}
+    >
       <div className="headerList flex justify-normal  space-x-5 text-white mx-auto pt-5 pb-5">
         <div className="space-x-2 border border-white rounded-2xl p-2">
           <FontAwesomeIcon icon={faBed} />
@@ -191,7 +195,7 @@ function Header({ type }) {
             <div className="headerSearchitem bg-white text-gray-700 space-x-1 ">
               <button
                 className="bg-blue-400 rounded-sm px-3 py-1 text-white"
-                onClick={()=> handleSearch()}
+                onClick={() => handleSearch()}
               >
                 Search
               </button>

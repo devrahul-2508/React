@@ -10,7 +10,7 @@ function FeaturedProperties() {
   return (
     <div className="fp px-12 md:px-20 lg:px-52 w-full flex flex-col md:flex-row space-x-2 gap-4">
       {images.map((image, index) => (
-        <div className="fpItem flex flex-1 flex-col gap-1 ">
+        <div key={index} className="fpItem flex flex-1 flex-col gap-1 ">
           <img
             src={images[index]}
             alt=""

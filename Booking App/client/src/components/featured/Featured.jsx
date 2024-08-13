@@ -9,7 +9,7 @@ function Featured() {
   return (
     <div className="featured pb-12 w-full flex flex-col md:flex-row justify-between space-y-5 md:space-y-0 md:space-x-5 px-12 md:px-20 lg:px-52 ">
       {images.map((image, index) => (
-        <div className="featuredItem relative overflow-hidden rounded-md flex-1 h-40 sm:h-80">
+        <div key={index} className="featuredItem relative overflow-hidden rounded-md flex-1 h-40 sm:h-80">
           <img className="w-full h-full object-cover" src={image} alt="Image" />
           <div className="featuredTitles">
             <h1 className="absolute bottom-4 sm:bottom-6 md:bottom-10 left-4 sm:left-6 md:left-10 text-white font-bold text-lg sm:text-xl md:text-2xl">

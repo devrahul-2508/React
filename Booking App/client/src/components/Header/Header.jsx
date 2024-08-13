@@ -11,11 +11,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { format } from "date-fns";
+import { useNavigate } from "react-router-dom";
 
 import { DateRange, DateRangePicker } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 function Header({ type }) {
+  const [destination, setDestination] = useState("");
+
   const [openDate, setOpenDate] = useState(false);
   const [date, setDate] = useState([
     {
@@ -32,6 +35,8 @@ function Header({ type }) {
     room: 1,
   });
 
+  const navigate = useNavigate();
+
   const handleOption = (name, operation) => {
     setOptions((prev) => {
       return {
@@ -39,6 +44,10 @@ function Header({ type }) {
         [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
       };
     });
+  };
+
+  const handleSearch = () => {
+    navigate("/hotels", { state: { destination, date, options } });
   };
   return (
     <div className="header bg-blue-800 px-12 md:px-20 lg:px-52 mt ${type ===  `list`? `pb-10` : `pb-40`} pb-20 relative">
@@ -83,6 +92,7 @@ function Header({ type }) {
                 type="text"
                 placeholder="Where are u going?"
                 className="headerSearchInput w-22 sm:w-100"
+                onChange={(e) => setDestination(e.target.value)}
               />
             </div>
             <div className="headerSearchitem relative  bg-white text-gray-700 space-x-1">
@@ -179,7 +189,10 @@ function Header({ type }) {
               )}
             </div>
             <div className="headerSearchitem bg-white text-gray-700 space-x-1 ">
-              <button className="bg-blue-400 rounded-sm px-3 py-1 text-white">
+              <button
+                className="bg-blue-400 rounded-sm px-3 py-1 text-white"
+                onClick={()=> handleSearch()}
+              >
                 Search
               </button>
             </div>

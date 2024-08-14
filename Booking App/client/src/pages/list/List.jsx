@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
-import Header from "../../components/Header/Header";
+import Header from "../../components/header/Header";
 import { useLocation } from "react-router-dom";
 import { format } from "date-fns";
 import { DateRange, DateRangePicker } from "react-date-range";
@@ -15,6 +15,7 @@ function List() {
 
   const [openDate, setOpenDate] = useState(false);
 
+
   return (
     <div>
       <Navbar />
@@ -25,7 +26,11 @@ function List() {
             <h1 className=" lsTitle font-bold text-2xl mb-10">Search</h1>
             <div className="lsItem flex flex-col mb-5 gap-1">
               <label>Destination</label>
-              <input type="text" className="h-10 w-80 flex items-start px-1" placeholder={destination} />
+              <input
+                type="text"
+                className="h-10 w-80 flex items-start px-1"
+                placeholder={destination}
+              />
             </div>
             <div className="lsItem flex flex-col mb-5 gap-1">
               <label>Check-in Date</label>

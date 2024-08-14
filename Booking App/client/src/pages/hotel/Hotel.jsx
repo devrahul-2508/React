@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/header/Header";
 import MailList from "../../components/mailList/MailList";
 import Footer from "../../components/footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCircleArrowLeft,
+  faCircleArrowRight,
+  faCircleXmark,
+  faLocationDot,
+} from "@fortawesome/free-solid-svg-icons";
 
 function Hotel() {
   const images = [
@@ -15,11 +20,58 @@ function Hotel() {
     "https://cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-villas_300/dd0d7f8202676306a661aa4f0cf1ffab31286211.jpg",
     "https://cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-chalet_300/8ee014fcc493cb3334e25893a1dee8c6d36ed0ba.jpg",
   ];
+
+  const [slideIndex, setSlideNo] = useState(0);
+  const [openSlide, setOpenSlide] = useState(false);
+
+  const handleOpen = (index) => {
+    setSlideNo(index);
+    setOpenSlide(true);
+  };
+
+  const handleMove = (direction) => {
+    let newSlideNumber;
+
+    if (direction === "l") {
+      newSlideNumber = slideIndex === 0 ? 5 : slideIndex - 1;
+    } else {
+      newSlideNumber = slideIndex === 5 ? 0 : slideIndex + 1;
+    }
+
+    setSlideNo(newSlideNumber);
+  };
   return (
     <div>
       <Navbar />
       <Header type={"list"} />
       <div className="hotelContainer">
+        {openSlide && (
+          <div className="slider fixed inset-0 flex flex-row bg-black bg-opacity-70 z-50 justify-center items-center gap-3">
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              onClick={() => setOpenSlide(false)}
+              className="close absolute top-5 right-10 text-3xl text-white cursor-pointer"
+            />
+            <FontAwesomeIcon
+              icon={faCircleArrowLeft}
+              onClick={() => handleMove("l")}
+              className="absolute left-10 text-3xl text-white cursor-pointer"
+            />
+            <div className="sliderWrapper flex justify-center items-center">
+              <img
+                src={images[slideIndex]}
+                alt=""
+                className=" h-auto w-auto max-h-full max-w-full md:w-4/5 md:h-[80vh]"
+              />
+            </div>
+            <FontAwesomeIcon
+              icon={faCircleArrowRight}
+              onClick={() => handleMove("r")}
+              className="absolute right-10 text-3xl text-white cursor-pointer"
+            />
+          </div>
+        )}
+
         <div className="hotelWrapper flex flex-col gap-2 px-10 sm:px-20 md:px-44 py-5">
           <h1 className="hotelTitle font-bold text-3xl">Grand Hotel</h1>
           <div className="hotelAddress">
@@ -36,7 +88,8 @@ function Hotel() {
             {images.map((image, index) => (
               <div key={index} className="hotelImgWrapper">
                 <img
-                  src={images[index]}
+                  onClick={() => handleOpen(index)}
+                  src={image}
                   alt=""
                   className="hotelmg w-full  h-60 object-cover"
                 />
@@ -81,8 +134,8 @@ function Hotel() {
           </div>
         </div>
       </div>
-      <MailList/>
-      <Footer/>
+      <MailList />
+      <Footer />
     </div>
   );
 }

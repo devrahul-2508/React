@@ -1,11 +1,20 @@
 import React from "react";
+import {useNavigate} from "react-router-dom"
+
 
 function SearchItem() {
+
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate("/hotels/123");
+  };
+
   const image =
     "https://cf.bstatic.com/xdata/images/city/max500/957801.webp?k=a969e39bcd40cdcc21786ba92826063e3cb09bf307bcfeac2aa392b838e9b7a5&o=";
 
   return (
-    <div className="searchItem border border-gray-400 rounded-md p-5 flex justify-between gap-10 mb-5 max-w-full">
+    <div className="searchItem border border-gray-400 rounded-md p-5 flex justify-between gap-10 mb-5 max-w-full" onClick={()=>handleNavigate()}>
       <img src={image} alt="" className="siImg w-60 h-60 object-cover rounded-md" />
       <div className="siDesc flex flex-col gap-2">
         <h1 className="siTitle text-2xl font-bold text-blue-500">Tower Street Apartments</h1>

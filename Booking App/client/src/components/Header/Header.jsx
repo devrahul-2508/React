@@ -47,6 +47,8 @@ function Header({ type }) {
   };
 
   const handleSearch = () => {
+    console.log(destination);
+    
     navigate("/hotels", { state: { destination, date, options } });
   };
   return (

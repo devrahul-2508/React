@@ -9,8 +9,6 @@ import SearchItem from "../../components/searchItem/SearchItem";
 function List() {
   const location = useLocation();
 
-  console.log(location);
-
   const [destination, setDestination] = useState(location.state.destination);
   const [date, setDate] = useState(location.state.date);
   const [options, setOptions] = useState(location.state.options);
@@ -27,7 +25,7 @@ function List() {
             <h1 className=" lsTitle font-bold text-2xl mb-10">Search</h1>
             <div className="lsItem flex flex-col mb-5 gap-1">
               <label>Destination</label>
-              <input type="text" className="h-10 w-80 flex items-start px-1" />
+              <input type="text" className="h-10 w-80 flex items-start px-1" placeholder={destination} />
             </div>
             <div className="lsItem flex flex-col mb-5 gap-1">
               <label>Check-in Date</label>

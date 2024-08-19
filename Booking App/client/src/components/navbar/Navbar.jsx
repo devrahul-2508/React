@@ -1,10 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
     <div className="w-full bg-blue-800">
       <div className="mx-auto flex justify-between items-center py-3 px-6">
-        <span className="text-white text-2xl font-bold">Booking.Com</span>
+        <Link to={"/"}>
+          <span className="text-white text-2xl font-bold">Booking.Com</span>
+        </Link>
         <div className="flex space-x-4">
           <button className="bg-blue-800 border border-white text-white py-2 px-5 rounded">
             Register

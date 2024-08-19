@@ -1,4 +1,5 @@
 import React from "react";
+import useFetch from "../../hooks/useFetch";
 
 function PropertyList() {
   const images = [
@@ -9,26 +10,41 @@ function PropertyList() {
     "https://cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-chalet_300/8ee014fcc493cb3334e25893a1dee8c6d36ed0ba.jpg",
   ];
 
+  const { data, loading, error } = useFetch(
+    "http://localhost:8800/api/hotels/countByType"
+  );
+  console.log(data);
+
   return (
     <div className="pList px-12 md:px-20 lg:px-52 max-w-full flex flex-col md:flex-row justify-between space-y-5 md:space-y-0 md:space-x-5 mt-10">
-      {images.map((image, index) => (
-        <div
-          key={index}
-          className="pListItem rounded-md overflow-hidden flex-1"
-        >
-          <img
-            src={image}
-            alt=""
-            className="w-full h-60 sm:h-40 object-cover"
-          />
-          <div className="pListTitles mt-2">
-            <h1 className="text-lg font-bold">
-              {["Hotels", "Apartments", "Resorts", "Villas", "Clubs"][index]}
-            </h1>
-            <h2 className="text-gray-500 font-normal text-sm">{["233 Hotels","2331 Hotels","1442 Hotels","2502 Hotels","620 Hotels"][index]}</h2>
-          </div>
-        </div>
-      ))}
+      {loading ? (
+        "loading"
+      ) : (
+        <>
+          {data &&
+            data.length > 0 &&
+            images.map((image, index) => (
+              <div
+                key={index}
+                className="pListItem rounded-md overflow-hidden flex-1"
+              >
+                <img
+                  src={image}
+                  alt=""
+                  className="w-full h-60 sm:h-40 object-cover"
+                />
+                <div className="pListTitles mt-2">
+                  <h1 className="text-lg font-bold capitalize">
+                    {data[index]?.type}
+                  </h1>
+                  <h2 className="text-gray-500 font-normal text-sm">
+                    {data[index]?.count} {data[index]?.type}
+                  </h2>
+                </div>
+              </div>
+            ))}
+        </>
+      )}{" "}
     </div>
   );
 }

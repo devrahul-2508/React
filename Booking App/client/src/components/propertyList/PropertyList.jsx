@@ -13,7 +13,6 @@ function PropertyList() {
   const { data, loading, error } = useFetch(
     "http://localhost:8800/api/hotels/countByType"
   );
-  console.log(data);
 
   return (
     <div className="pList px-12 md:px-20 lg:px-52 max-w-full flex flex-col md:flex-row justify-between space-y-5 md:space-y-0 md:space-x-5 mt-10">

@@ -29,7 +29,6 @@ function Hotel() {
 
   const location = useLocation();
   const id = location.pathname.split("/")[2];
-  console.log(id);
 
   const { data, loading, error } = useFetch(
     `http://localhost:8800/api/hotels/find/${id}`
@@ -37,7 +36,6 @@ function Hotel() {
 
   const { dates, options } = useContext(SearchContext);
 
-  console.log(dates);
 
   const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
 

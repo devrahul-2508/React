@@ -17,6 +17,7 @@ import { DateRange, DateRangePicker } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { SearchContext } from "../../context/SearchContext.jsx";
+import { AuthContext } from "../../context/AuthContext.jsx";
 function Header({ type }) {
   const [destination, setDestination] = useState("");
 
@@ -47,6 +48,8 @@ function Header({ type }) {
     });
   };
   const { dispatch } = useContext(SearchContext);
+
+  const { user } = useContext(AuthContext);
 
   const handleSearch = () => {
     console.log(destination);
@@ -94,9 +97,11 @@ function Header({ type }) {
             Get rewarded for your travels - unlock instant savings of 10% or
             more with free booking account
           </p>
-          <button className="flex justify-start mt-5 rounded-md bg-white font-semibold p-2 text-x">
-            Sign in/ Register
-          </button>
+          {!user && (
+            <button className="flex justify-start mt-5 rounded-md bg-white font-semibold p-2 text-x">
+              Sign in/ Register
+            </button>
+          )}
           <div className="headerSearch max-w-7xl bg-white items-center justify-between flex border-4 border-yellow-600 rounded-md mt-5 p-2 absolute -bottom-9 sm:-bottom-6 left-4 right-4 sm:left-10 sm:right-10 md:left-20 md:right-20 lg:left-52 lg:right-52">
             <div className="headerSearchitem  bg-white text-gray-700 space-x-1">
               <FontAwesomeIcon icon={faBed} className="headerIcon" />

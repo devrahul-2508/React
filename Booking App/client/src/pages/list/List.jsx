@@ -28,8 +28,6 @@ function List() {
     refetch();
   };
 
-  console.log(dates, "Dates");
-
   return (
     <div>
       <Navbar />

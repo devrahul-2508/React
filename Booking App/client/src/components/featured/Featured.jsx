@@ -11,9 +11,6 @@ function Featured() {
   const { data, loading, error } = useFetch(
     "http://localhost:8800/api/hotels/countByCity?cities=berlin,Krakow,Miami"
   );
-
-  console.log(data);
-
   return (
     <div className="featured pb-12 w-full flex flex-col md:flex-row justify-between space-y-5 md:space-y-0 md:space-x-5 px-12 md:px-20 lg:px-52 ">
       {images.map((image, index) => (

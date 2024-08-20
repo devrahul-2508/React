@@ -13,8 +13,6 @@ function FeaturedProperties() {
     "http://localhost:8800/api/hotels?featured=true&limit=4"
   );
 
-  console.log("Featured Props", data);
-
   return (
     <div className="fp px-12 md:px-20 lg:px-52 w-full flex flex-col md:flex-row space-x-2 gap-4">
       {loading ? (

@@ -11,7 +11,7 @@ function List() {
   const location = useLocation();
 
   const [destination, setDestination] = useState(location.state.destination);
-  const [date, setDate] = useState(location.state.date);
+  const [dates, setDates] = useState(location.state.dates);
   const [options, setOptions] = useState(location.state.options);
   const [openDate, setOpenDate] = useState(false);
 
@@ -27,6 +27,8 @@ function List() {
   const handleClick = () => {
     refetch();
   };
+
+  console.log(dates, "Dates");
 
   return (
     <div>
@@ -49,17 +51,17 @@ function List() {
               <span
                 onClick={() => setOpenDate(!openDate)}
                 className="headerSearchText h-10 flex items-center bg-white text-sm p-3 cursor-pointer"
-              >{`${format(date[0].startDate, "dd/MM/yyyy")} to ${format(
-                date[0].endDate,
+              >{`${format(dates[0].startDate, "dd/MM/yyyy")} to ${format(
+                dates[0].endDate,
                 "dd/MM/yyyy"
               )}`}</span>{" "}
               {openDate && (
                 <DateRange
                   className="z-10"
                   editableDateInputs={true}
-                  onChange={(item) => setDate([item.selection])}
+                  onChange={(item) => setDates([item.selection])}
                   moveRangeOnFirstSelection={false}
-                  ranges={date}
+                  ranges={dates}
                 />
               )}
             </div>

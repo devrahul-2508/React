@@ -48,7 +48,7 @@ function Login() {
           className="lInput border border-gray-400 rounded-sm text-lg p-2 w-full"
         />
         <input
-          type="text"
+          type="password"
           placeholder="Password"
           onChange={(e) => handleChange(e)}
           id="password"

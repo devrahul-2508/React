@@ -59,7 +59,7 @@ const Links = () => {
 
         {/* The mobile dropdown menu, shown when "open" is true */}
         {open && (
-          <div className="mobileLinks absolute top-52 right-0 w-1/2 flex flex-col items-center justify-center gap-2 overflow-hidden bg-purple-700">
+          <div className="mobileLinks absolute h-full right-0 w-1/2 flex flex-col items-center justify-center gap-2 overflow-hidden bg-purple-700">
             {links.map((link) => {
               return <NavLink item={link} key={link.title} />;
             })}

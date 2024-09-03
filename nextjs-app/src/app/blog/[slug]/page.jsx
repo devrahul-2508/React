@@ -1,4 +1,7 @@
-function SinglePostPage() {
+function SinglePostPage({params}) {
+
+  console.log(params);
+  
   return (
     <div>SinglePostPage</div>
   )

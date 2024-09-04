@@ -3,8 +3,9 @@
 import Link from "next/link";
 import NavLink from "../navLink/navLink";
 import { useState } from "react";
+import { handleLogout } from "@/lib/action";
 
-const Links = () => {
+const Links = ({ session }) => {
   const links = [
     {
       title: "Homepage",
@@ -27,7 +28,6 @@ const Links = () => {
   const [open, setOpen] = useState(false);
 
   // TEMPORARY
-  const session = true;
   const isAdmin = true;
 
   return (
@@ -37,14 +37,16 @@ const Links = () => {
         {links.map((link) => {
           return <NavLink item={link} key={link.title} />;
         })}
-        {session ? (
+        {session?.user ? (
           <>
-            {isAdmin && (
+            {session.user?.isAdmin && (
               <NavLink item={{ title: "Admin", path: "/admin" }}></NavLink>
             )}
-            <button className="bg-white p-1 text-black text-sm font-bold rounded-sm">
-              Logout
-            </button>
+            <form action={handleLogout}>
+              <button className="bg-white p-1 text-black text-sm font-bold rounded-sm">
+                Logout
+              </button>
+            </form>
           </>
         ) : (
           <NavLink item={{ title: "Login", path: "/login" }}></NavLink>

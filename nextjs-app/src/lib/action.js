@@ -3,7 +3,8 @@
 import { revalidatePath } from "next/cache";
 import { Post, User } from "./models";
 import { connectToDb } from "./utils";
-import { signIn,signOut } from "./auth";
+import { signIn, signOut } from "./auth";
+import bcrypt from "bcryptjs";
 
 export const addPost = async (formData) => {
   // const title = formData.get("title");
@@ -95,9 +96,11 @@ export const handleLogout = async () => {
   await signOut();
 };
 
-export const register = async (previousState, formData) => {
+export const register = async (formData) => {
   const { username, email, password, img, passwordRepeat } =
     Object.fromEntries(formData);
+
+  console.log(`${username} ${email} ${password}`);
 
   if (password !== passwordRepeat) {
     return { error: "Passwords do not match" };

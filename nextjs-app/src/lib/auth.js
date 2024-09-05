@@ -4,6 +4,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { connectToDb } from "./utils";
 import { User } from "./models";
 import bcrypt from "bcryptjs";
+import { authConfig } from "./auth.config";
 //import { authConfig } from "./auth.config";
 
 const login = async (credentials) => {
@@ -22,6 +23,7 @@ const login = async (credentials) => {
 
     return user;
   } catch (err) {
+    console.log(err);
     throw new Error("Failed to login!");
   }
 };
@@ -32,6 +34,7 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
+  ...authConfig,
   providers: [
     GitHub({
       clientId: process.env.GITHUB_ID,
@@ -43,6 +46,7 @@ export const {
           const user = await login(credentials);
           return user;
         } catch (err) {
+          console.error("Error during authorization:", err.message);
           return null;
         }
       },
@@ -71,5 +75,6 @@ export const {
       }
       return true;
     },
+    ...authConfig.callbacks
   },
 });

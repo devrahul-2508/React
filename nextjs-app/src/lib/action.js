@@ -100,18 +100,25 @@ export const register = async (formData) => {
   const { username, email, password, img, passwordRepeat } =
     Object.fromEntries(formData);
 
-  console.log(`${username} ${email} ${password}`);
+  console.log(`${username} ${email} ${password} ${passwordRepeat}`);
+  console.log("Inside");
 
   if (password !== passwordRepeat) {
     return { error: "Passwords do not match" };
   }
 
+  console.log("Inside");
+
   try {
     connectToDb();
+
+    console.log("Inside tru catch");
 
     const user = await User.findOne({ username });
 
     if (user) {
+      console.log("username exists");
+
       return { error: "Username already exists" };
     }
 
@@ -135,7 +142,7 @@ export const register = async (formData) => {
   }
 };
 
-export const login = async (prevState, formData) => {
+export const login = async (formData) => {
   const { username, password } = Object.fromEntries(formData);
 
   try {

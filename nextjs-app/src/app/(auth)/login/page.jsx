@@ -1,4 +1,4 @@
-import { handleGithubLogin } from "@/lib/action";
+import { handleGithubLogin, login } from "@/lib/action";
 
 const LoginPage = () => {
   return (
@@ -9,11 +9,11 @@ const LoginPage = () => {
             Login with Github
           </button>
         </form>
-        <form className="flex flex-col gap-3" action="">
+        <form className="flex flex-col gap-3" action={login}>
           <input
             className="bg-slate-800 p-2 rounded-md"
             type="text"
-            name="user"
+            name="username"
             placeholder="username"
           />
 

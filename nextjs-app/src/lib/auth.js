@@ -18,11 +18,10 @@ const login = async (credentials) => {
       user.password
     );
 
-    if (!isPasswordCorrect) throw new Error("Wrong credentials!");
+    if (!isPasswordCorrect) throw new Error("Wrong password!");
 
     return user;
   } catch (err) {
-    console.log(err);
     throw new Error("Failed to login!");
   }
 };

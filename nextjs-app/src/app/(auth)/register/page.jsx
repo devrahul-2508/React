@@ -25,7 +25,7 @@ function RegisterPage() {
         <input
           className="bg-slate-800 p-2 rounded-md"
           type="password"
-          name="password"
+          name="passwordRepeat"
           placeholder="passwordRepeat"
         />
 
